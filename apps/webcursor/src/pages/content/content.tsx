@@ -1,13 +1,11 @@
 import { useResizable } from "@src/hooks/use-resizable";
-import { getGreeting } from "@src/lib/ai/api/get-greeting";
 import { MAX_INT } from "@src/lib/env";
-import { FlameIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { Chat } from "./chat";
+
 export function Content() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [greeting, setGreeting] = useState("");
-  const [isPending, setIsPending] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const { width, resizeHandleProps } = useResizable({
     isVisible,
     onShow: () => setIsVisible(true),
@@ -16,7 +14,7 @@ export function Content() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.metaKey && e.shiftKey && e.key === "l") {
+      if (e.metaKey && e.shiftKey && e.key === "k") {
         e.preventDefault();
         setIsVisible((p) => !p);
       }
@@ -24,13 +22,6 @@ export function Content() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
-
-  const onClick = async () => {
-    setIsPending(true);
-    const aiGreeting = await getGreeting({ name: "Batman" });
-    setGreeting(aiGreeting);
-    setIsPending(false);
-  };
 
   return (
     <div
@@ -40,38 +31,22 @@ export function Content() {
         top: "0",
         right: "0",
         width: `${width}vw`,
-        height: "97vh",
+        height: "100vh",
         pointerEvents: "auto",
         zIndex: MAX_INT,
         display: isVisible ? "flex" : "none",
         flexDirection: "column",
         backgroundColor: "#181818",
-        padding: "1rem 2rem",
+        padding: "0.5rem",
+        color: "#FAFAFA",
+        border: "2px solid #383838",
       }}
     >
       <div {...resizeHandleProps} />
       <div className="flex items-center transition-all hover:brightness-125">
         <h1>✨ Webcursor</h1>
       </div>
-      <p>AI Greeting: {greeting}</p>
-      <button
-        onClick={onClick}
-        className="rounded-md"
-        style={{
-          width: "50%",
-          backgroundColor: "#1e3a8a",
-          border: "none",
-          margin: "0 auto",
-          padding: "10px 0",
-          cursor: isPending ? "not-allowed" : "pointer",
-          opacity: isPending ? 0.5 : 1.0,
-        }}
-        disabled={isPending}
-      >
-        <p className="font-bold" style={{ margin: 0 }}>
-          Greet
-        </p>
-      </button>
+      <Chat />
     </div>
   );
 }

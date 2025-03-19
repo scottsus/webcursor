@@ -3,7 +3,7 @@
  * extension, everything is public
  */
 
-const { DEV, VITE_DEV_NAME } = import.meta.env;
+const { DEV } = import.meta.env;
 
 export const SERVER_URL = DEV ? "http://localhost:3000" : "https://example.com";
 

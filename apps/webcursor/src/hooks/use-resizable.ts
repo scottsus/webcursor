@@ -4,7 +4,7 @@ const CURSOR_STYLE = "col-resize";
 
 export function useResizable({
   initialWidth = 25,
-  minWidth = 15,
+  minWidth = 13,
   maxWidth = 50,
   onHide,
   onShow,

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 @keyframes textShine {
   0% {
     background-position: 100% 50%;

@@ -18,13 +18,23 @@
     "@ai-sdk/provider" "1.0.7"
     "@ai-sdk/provider-utils" "2.1.8"
 
-"@ai-sdk/openai@^1.0.11", "@ai-sdk/openai@^1.0.15":
+"@ai-sdk/openai@^1.0.15":
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/@ai-sdk/openai/-/openai-1.1.12.tgz#5f313e674849ab41df99a63fa18d64fd12e13505"
   integrity sha512-lh3zN4J/XEqkjpZAOBajSttF1Nl2qV/7WxRbORn+4jZmQkmzWQbsEUpgQ6ME+heyRvnsRCNq3fkMGehWWxWuXg==
   dependencies:
     "@ai-sdk/provider" "1.0.7"
     "@ai-sdk/provider-utils" "2.1.8"
+
+"@ai-sdk/provider-utils@2.1.14":
+  version "2.1.14"
+  resolved "https://registry.yarnpkg.com/@ai-sdk/provider-utils/-/provider-utils-2.1.14.tgz#363d9c111cd7ba29871e4a49c6a09b6860ca33e1"
+  integrity sha512-0fNQwstwqHP+cE9bP9nQXeEhY/qJRGW5Y+AQrvwzd0EI2+gH1GmwI1IC/gIOksmz/gRy4G+kXXD+Fbq4T/jCbA==
+  dependencies:
+    "@ai-sdk/provider" "1.0.12"
+    eventsource-parser "^3.0.0"
+    nanoid "^3.3.8"
+    secure-json-parse "^2.7.0"
 
 "@ai-sdk/provider-utils@2.1.8":
   version "2.1.8"
@@ -35,6 +45,13 @@
     eventsource-parser "^3.0.0"
     nanoid "^3.3.8"
     secure-json-parse "^2.7.0"
+
+"@ai-sdk/provider@1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@ai-sdk/provider/-/provider-1.0.12.tgz#f2df2b1f17863e213b5138d27cd5d09bcb6f976c"
+  integrity sha512-88Uu1zJIE1UUOVJWfE2ybJXgiH8JJ97QY9fbmplErEbfa/k/1kF+tWMVAAJolF2aOGmazQGyQLhv4I9CCuVACw==
+  dependencies:
+    json-schema "^0.4.0"
 
 "@ai-sdk/provider@1.0.7":
   version "1.0.7"
@@ -53,6 +70,16 @@
     swr "^2.2.5"
     throttleit "2.1.0"
 
+"@ai-sdk/react@^1.0.15":
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/@ai-sdk/react/-/react-1.1.24.tgz#ec1f6ad84f0d356d7f5f726c169d09426b82b2dc"
+  integrity sha512-20rVK34QCaEl/4u87/Y+JXt7eCzF60UwoJOjHJhlCdmFrbk6AfRsijv0ludA9ELArE+ulxkSf21L3FokkZ2Gmg==
+  dependencies:
+    "@ai-sdk/provider-utils" "2.1.14"
+    "@ai-sdk/ui-utils" "1.1.20"
+    swr "^2.2.5"
+    throttleit "2.1.0"
+
 "@ai-sdk/ui-utils@1.1.14":
   version "1.1.14"
   resolved "https://registry.yarnpkg.com/@ai-sdk/ui-utils/-/ui-utils-1.1.14.tgz#64f26d94a413b1fa2b8684cc5aada5ba8cb5ea15"
@@ -60,6 +87,15 @@
   dependencies:
     "@ai-sdk/provider" "1.0.7"
     "@ai-sdk/provider-utils" "2.1.8"
+    zod-to-json-schema "^3.24.1"
+
+"@ai-sdk/ui-utils@1.1.20":
+  version "1.1.20"
+  resolved "https://registry.yarnpkg.com/@ai-sdk/ui-utils/-/ui-utils-1.1.20.tgz#040966e2e0894e9b893682c2b3fabb932b86c2eb"
+  integrity sha512-k+qQh1YA8/kH12d8KQFWjr0UxyS9nLibzbLr2OY6fzpfZg8xIAKlZeH952JIp2XwAp72tesgbsAmA15cDldtyw==
+  dependencies:
+    "@ai-sdk/provider" "1.0.12"
+    "@ai-sdk/provider-utils" "2.1.14"
     zod-to-json-schema "^3.24.1"
 
 "@alloc/quick-lru@^5.2.0":

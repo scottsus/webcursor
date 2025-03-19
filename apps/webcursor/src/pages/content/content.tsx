@@ -1,27 +1,25 @@
 import { useResizable } from "@src/hooks/use-resizable";
 import { MAX_INT } from "@src/lib/env";
-import { useEffect, useState } from "react";
+import { useWebcursor } from "@src/providers/WebcursorProvider";
+import { useEffect } from "react";
 
 import { Chat } from "./chat";
 
 export function Content() {
-  const [isVisible, setIsVisible] = useState(true);
+  const { visibility, textareaRef } = useWebcursor();
+  const { isVisible, onShow, onHide } = visibility;
+
   const { width, resizeHandleProps } = useResizable({
     isVisible,
-    onShow: () => setIsVisible(true),
-    onHide: () => setIsVisible(false),
+    onShow,
+    onHide,
   });
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.metaKey && e.shiftKey && e.key === "k") {
-        e.preventDefault();
-        setIsVisible((p) => !p);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    if (isVisible) {
+      textareaRef.current?.focus();
+    }
+  }, [isVisible]);
 
   return (
     <div

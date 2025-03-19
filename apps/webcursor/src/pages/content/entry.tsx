@@ -1,3 +1,4 @@
+import { WebcursorProvider } from "@src/providers/WebcursorProvider";
 import { createRoot } from "react-dom/client";
 import { Toaster } from "sonner";
 
@@ -38,6 +39,8 @@ const root = createRoot(appElement);
 root.render(
   <div style={{ fontFamily: "sans-serif" }}>
     <style type="text/css">{styles.toString()}</style>
-    <Content />
+    <WebcursorProvider>
+      <Content />
+    </WebcursorProvider>
   </div>,
 );

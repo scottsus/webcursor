@@ -1,11 +1,11 @@
 {
-  "name": "browser",
+  "name": "webcursor",
   "version": "0.0.1",
-  "description": "Equip your browser with AI superpowers.",
+  "description": "Like Cursor IDE but on the browser",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scottsus/browser-extension.git"
+    "url": "https://github.com/scottsus/webcursor.git"
   },
   "scripts": {
     "build": "vite build",

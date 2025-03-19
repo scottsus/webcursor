@@ -1,3 +1,4 @@
+import { useResizable } from "@src/hooks/use-resizable";
 import { getGreeting } from "@src/lib/ai/api/get-greeting";
 import { MAX_INT } from "@src/lib/env";
 import { FlameIcon } from "lucide-react";
@@ -7,10 +8,15 @@ export function Content() {
   const [isVisible, setIsVisible] = useState(false);
   const [greeting, setGreeting] = useState("");
   const [isPending, setIsPending] = useState(false);
+  const { width, resizeHandleProps } = useResizable({
+    isVisible,
+    onShow: () => setIsVisible(true),
+    onHide: () => setIsVisible(false),
+  });
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.metaKey && e.shiftKey && e.key === "k") {
+      if (e.metaKey && e.shiftKey && e.key === "l") {
         e.preventDefault();
         setIsVisible((p) => !p);
       }
@@ -31,18 +37,21 @@ export function Content() {
       className="flex rounded-lg"
       style={{
         position: "fixed",
-        top: "5vh",
-        left: "5vw",
+        top: "0",
+        right: "0",
+        width: `${width}vw`,
+        height: "97vh",
         pointerEvents: "auto",
         zIndex: MAX_INT,
         display: isVisible ? "flex" : "none",
         flexDirection: "column",
-        backgroundColor: "#1F2123",
+        backgroundColor: "#181818",
+        padding: "1rem 2rem",
       }}
     >
+      <div {...resizeHandleProps} />
       <div className="flex items-center transition-all hover:brightness-125">
-        <FlameIcon size={42} color="orange" />
-        <h1>Browser Extension</h1>
+        <h1>✨ Webcursor</h1>
       </div>
       <p>AI Greeting: {greeting}</p>
       <button

@@ -1,4 +1,5 @@
 import { WebcursorProvider } from "@src/providers/WebcursorProvider";
+import highlights from "highlight.js/styles/github-dark.css?inline";
 import { createRoot } from "react-dom/client";
 import { Toaster } from "sonner";
 
@@ -23,6 +24,10 @@ contentAppReset.textContent = `:host {all: initial;}`;
 const contentScriptStyles = document.createElement("style");
 shadowRoot.append(contentScriptStyles);
 contentScriptStyles.textContent = styles;
+
+const highlightStyles = document.createElement("style");
+shadowRoot.append(highlightStyles);
+highlightStyles.textContent = highlights;
 
 const toastElement = document.createElement("div");
 document.body.appendChild(toastElement);

@@ -18,8 +18,12 @@ export function Content() {
   useEffect(() => {
     if (isVisible) {
       textareaRef.current?.focus();
+
+      document.body.style.paddingRight = `${width}vw`;
+    } else {
+      document.body.style.paddingRight = "0";
     }
-  }, [isVisible]);
+  }, [isVisible, width]);
 
   return (
     <div
@@ -28,16 +32,16 @@ export function Content() {
         position: "fixed",
         top: "0",
         right: "0",
-        width: `${width}vw`,
+        width: isVisible ? `${width}vw` : "0",
         height: "100vh",
         pointerEvents: "auto",
         zIndex: MAX_INT,
-        display: isVisible ? "flex" : "none",
         flexDirection: "column",
         backgroundColor: "#181818",
-        padding: "0.5rem",
+        padding: isVisible ? "0.5rem" : "0",
         color: "#FAFAFA",
-        border: "2px solid #383838",
+        border: isVisible ? "2px solid #383838" : "none",
+        transition: "all 0.3s ease",
       }}
     >
       <div {...resizeHandleProps} />

@@ -5,7 +5,7 @@ import {
   type Message,
   type UIMessage,
 } from "@ai-sdk/ui-utils";
-import { SERVER_URL } from "@src/lib/env";
+import { DEV, SERVER_URL } from "@src/lib/env";
 import {
   createContext,
   RefObject,
@@ -55,7 +55,7 @@ export function WebcursorProvider({
 }: {
   children: React.ReactNode | React.ReactNode[];
 }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(DEV ? true : false);
   const onShow = () => {
     setIsVisible(true);
     textareaRef.current?.focus();

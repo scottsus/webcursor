@@ -1,6 +1,8 @@
 "use client";
 
 import { useWebcursor } from "@src/providers/WebcursorProvider";
+import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
 
 import { takeScreenshot } from "./screenshot";
 
@@ -14,6 +16,9 @@ export function Chat() {
 
     Here are some text the user has highlighted:
     ${highlights.join("\n")}
+
+    If giving code with code blocks, make sure to include triple backticks followed by the language name.
+    This is important!
 
     Finally, the user is asking:
     <webcursor-user-query>${input}</webcursor-user-query>
@@ -41,10 +46,19 @@ export function Chat() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        position: "relative",
       }}
     >
       <div
-        style={{ display: "flex", flexDirection: "column", rowGap: "0.5rem" }}
+        className="hide-scrollbar"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          rowGap: "0.5rem",
+          height: "85vh",
+          overflow: "scroll",
+          paddingBottom: "10vh",
+        }}
       >
         {messages.map((message) =>
           message.role === "user" ? (
@@ -65,6 +79,8 @@ export function Chat() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
+          position: "absolute",
+          bottom: 0,
         }}
       >
         {highlights.length > 0 && <UserSelection selections={highlights} />}
@@ -150,9 +166,20 @@ function AssistantMessage({ content }: { content: string }) {
         rowGap: "0.4rem",
       }}
     >
-      <p style={{ margin: "0", fontSize: "14px", lineHeight: 1.4 }}>
-        {content}
-      </p>
+      <div
+        className="assistant-message"
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          padding: "0.6rem",
+          rowGap: "0.4rem",
+        }}
+      >
+        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+          {content}
+        </ReactMarkdown>
+      </div>
     </div>
   );
 }

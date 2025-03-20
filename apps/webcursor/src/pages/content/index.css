@@ -6,11 +6,29 @@
   box-sizing: border-box;
 }
 
-@keyframes textShine {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.assistant-message pre {
+  overflow-x: auto;
+  white-space: pre;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.assistant-message pre::-webkit-scrollbar {
+  display: none;
+}
+
+.assistant-message p,
+.assistant-message li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }

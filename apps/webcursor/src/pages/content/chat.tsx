@@ -2,14 +2,19 @@
 
 import { useWebcursor } from "@src/providers/WebcursorProvider";
 
+import { takeScreenshot } from "./screenshot";
+
 export function Chat() {
   const { textareaRef, vercelAiSdk, highlight } = useWebcursor();
   const { messages, input, handleInputChange, append } = vercelAiSdk;
   const { highlights, clearHighlights } = highlight;
 
-  const handleSubmit = () => {
-    const message = `Here are some text the user has highlighted:
+  const handleSubmit = async () => {
+    const message = `You are working with the context given in the attachment.
+
+    Here are some text the user has highlighted:
     ${highlights.join("\n")}
+
     Finally, the user is asking:
     <webcursor-user-query>${input}</webcursor-user-query>
     `;
@@ -17,10 +22,16 @@ export function Chat() {
       target: { value: "" },
     } as React.ChangeEvent<HTMLInputElement>);
     clearHighlights();
-    append({
-      role: "user",
-      content: message,
-    });
+
+    const attachment = await takeScreenshot();
+
+    append(
+      {
+        role: "user",
+        content: message,
+      },
+      { experimental_attachments: [attachment] },
+    );
   };
 
   return (

@@ -21,7 +21,12 @@
   "icons": {
     "128": "surf.png"
   },
-  "permissions": [],
+  "permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "content_scripts": [
     {
       "matches": [
